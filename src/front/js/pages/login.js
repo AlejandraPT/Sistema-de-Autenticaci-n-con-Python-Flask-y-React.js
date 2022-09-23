@@ -37,7 +37,7 @@ export const Login = () => {
                     className="input-reg mt-1"
                     name="email"
                     value={email}
-                    placeholder=" Email"
+                    placeholder=". . .@gmail.com"
                     autoComplete="off"
                     type="text"
                     onChange={(event) => setEmail(event.target.value)}
@@ -48,7 +48,7 @@ export const Login = () => {
                     className="input-reg"
                     name="Password"
                     value={password}
-                    placeholder=" contraseña"
+                    placeholder=" *****"
                     autoComplete="off"
                     type="password"
                     onChange={(event) => setPassword(event.target.value)}
