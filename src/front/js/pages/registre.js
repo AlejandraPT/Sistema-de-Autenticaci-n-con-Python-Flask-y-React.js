@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import "../../styles/index.css";
+import "../../styles/home.css";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 
 export const Registre = () => {
   const [info, setInfo] = useState({
@@ -34,7 +35,7 @@ export const Registre = () => {
     // e.preventDefault();
     addInfo(data);
     if (data) {
-      navigate("/registrationValidated");
+      navigate("/userLogin");
     }
   };
 
@@ -61,113 +62,114 @@ export const Registre = () => {
   };
 
   return (
-    <div className="registro">
-      <div className="registration col-12 mb-3 mt-5 text-center"></div>
+    <div className="text-center col-12 mb-3 mt-5 titular">
+      <h1>¿Eres Nuevo?</h1>
+      <div className="registro position-absolute top-50 start-50 translate-middle">
+        <div className="registration col-12 mb-3 mt-5 text-center"></div>
+        <div className="row">
+          <div className="container_form">
+            <form
+              className="form"
+              onSubmit={handleSubmit(onSubmit)}
+              id="registration"
+            >
+              <div className="col-12 mb-3 mt-1 text-center">
+                <input
+                  className="input-reg mt-1 relleno"
+                  name="name"
+                  placeholder="Nombre"
+                  autoComplete="off"
+                  type="text"
+                  {...register("name", {
+                    required: "Campo obligatorio",
+                    minLength: {
+                      value: 3,
+                      message: "Campo obligatorio",
+                    },
+                  })}
+                  onChange={handleInputChange}
+                />
+                <p>{errors.name?.message}</p>
+              </div>
 
-      <div className="row">
-        <div className="container_form">
-          <form
-            className="form"
-            onSubmit={handleSubmit(onSubmit)}
-            id="registration"
-          >
-            <div className="col-12 mb-3 mt-1 text-center">
-              <p>
-                <b>¿No tienes una cuenta?</b>
-              </p>
-              <input
-                className="input-reg mt-1"
-                name="name"
-                placeholder=" Nombre"
-                autoComplete="off"
-                type="text"
-                {...register("name", {
-                  required: "Por favor, introduce un nombre válido",
-                  minLength: {
-                    value: 3,
-                    message: "Por favor, introduce un nombre válido",
-                  },
-                })}
-                onChange={handleInputChange}
-              />
-              <p>{errors.name?.message}</p>
-            </div>
+              <div className="col-12  mb-3 text-center">
+                <input
+                  className="input-reg relleno"
+                  name="lastName"
+                  placeholder="Apellidos"
+                  autoComplete="off"
+                  type="text"
+                  {...register("lastName", {
+                    required: "Campo obligatorio",
+                    minLength: {
+                      value: 3,
+                      message: "Campo obligatorio",
+                    },
+                  })}
+                  onChange={handleInputChange}
+                />
+                <p>{errors.name?.message}</p>
+              </div>
 
-            <div className="col-12  mb-3 text-center">
-              <input
-                className="input-reg"
-                name="lastName"
-                placeholder=" Apellido"
-                autoComplete="off"
-                type="text"
-                {...register("lastName", {
-                  required: "Por favor, introduce un apellido válido",
-                  minLength: {
-                    value: 3,
-                    message: "Por favor, introduce un apellido válido",
-                  },
-                })}
-                onChange={handleInputChange}
-              />
-              <p>{errors.name?.message}</p>
-            </div>
+              <div className="col-12 mb-3 text-center">
+                <input
+                  className="input-reg relleno"
+                  name="email"
+                  placeholder="Email"
+                  autoComplete="off"
+                  type="text"
+                  {...register("email", {
+                    required: {
+                      value: true,
+                      message: "Introduce email válido",
+                    },
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                      message: "Introduce email válido",
+                    },
+                  })}
+                  onChange={handleInputChange}
+                />
+                <p>{errors.email?.message}</p>
+              </div>
 
-            <div className="col-12 mb-3 text-center">
-              <input
-                className="input-reg"
-                name="email"
-                placeholder=" Email"
-                autoComplete="off"
-                type="text"
-                {...register("email", {
-                  required: {
-                    value: true,
-                    message: "Por favor, introduce un email válido",
-                  },
-                  pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                    message: "Por favor, introduce un email válido",
-                  },
-                })}
-                onChange={handleInputChange}
-              />
-              <p>{errors.email?.message}</p>
-            </div>
+              <div className="col-12  mb-5 text-center">
+                <input
+                  className="input-reg relleno"
+                  name="password"
+                  placeholder="Contraseña"
+                  autoComplete="off"
+                  type="password"
+                  {...register("password", {
+                    required: {
+                      value: true,
+                      message: "Introduce contraseña válida",
+                    },
+                    minLength: {
+                      value: 6,
+                      message: "La contraseña debe tener al menos 8 caracteres",
+                    },
+                  })}
+                  onChange={handleInputChange}
+                />
+                <p>{errors.password?.message}</p>
+              </div>
 
-            <div className="col-12  mb-5 text-center">
-              <input
-                className="input-reg"
-                name="password"
-                placeholder=" Contraseña"
-                autoComplete="off"
-                type="password"
-                {...register("password", {
-                  required: {
-                    value: true,
-                    message: "Por favor, introduce una contraseña válida",
-                  },
-                  minLength: {
-                    value: 6,
-                    message: "La contraseña debe tener al menos 8 caracteres",
-                  },
-                })}
-                onChange={handleInputChange}
-              />
-              <p>{errors.password?.message}</p>
-            </div>
-
-            <div className="col-12  mb-3 text-center">
-              <button className="ctaregister">
-                <span>Enviar</span>
-                <svg viewBox="0 0 13 10" height="10px" width="15px">
-                  <path d="M1,5 L11,5"></path>
-                  <polyline points="8 1 12 5 8 9"></polyline>
-                </svg>
-              </button>
-            </div>
-          </form>
+              <div className="col-12  mb-3 text-center">
+                <Link to="/validacion">
+                    <button className="botonI">
+                      <span className="circle" aria-hidden="true">
+                      <span className="icon arrow"></span>
+                      </span>
+                      <span class="button-text">Registrate</span>
+                    </button>
+                </Link>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
+    
   );
 };
