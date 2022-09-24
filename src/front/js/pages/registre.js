@@ -156,7 +156,7 @@ export const Registre = () => {
               </div>
 
               <div className="col-12  mb-3 text-center">
-                <Link to="/validacion">
+                <Link to="/private">
                     <button className="botonI">
                       <span className="circle" aria-hidden="true">
                       <span className="icon arrow"></span>

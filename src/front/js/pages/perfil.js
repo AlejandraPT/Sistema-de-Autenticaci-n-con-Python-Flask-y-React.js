@@ -20,6 +20,7 @@ export const Perfil = () => {
                     <input
                       className="input-reg mt-1 relleno"
                       name="Name"
+                      defaultValue={store.user.name}
                       placeholder="Name"
                       autoComplete="off"
                       type="text"
@@ -29,6 +30,7 @@ export const Perfil = () => {
                     <input
                       className="input-reg mt-1 relleno"
                       name="Lastname"
+                      defaultValue={store.user.last_name}
                       placeholder="Lastname"
                       autoComplete="off"
                       type="text"
@@ -38,6 +40,7 @@ export const Perfil = () => {
                     <input
                       className="input-reg mt-1 relleno"
                       name="email"
+                      defaultValue={store.user.email}
                       placeholder="Email"
                       autoComplete="off"
                       type="text"
@@ -47,6 +50,7 @@ export const Perfil = () => {
                     <input
                       className="input-reg relleno"
                       name="Password"
+                      defaultValue={store.user.password}
                       placeholder="contraseña"
                       autoComplete="off"
                       type="password"

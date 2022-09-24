@@ -90,7 +90,7 @@ const getState = ({ getStore, getActions, setStore }) => {
   
 			console.log(data.token);
 			setStore({
-			  auth: true,
+			  auth: data.logeado,
 			});
 			localStorage.setItem("token", data.token);
 			setStore({
@@ -124,6 +124,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 		  localStorage.removeItem("user");
 		  const actions = getActions();
 		},
+
+		getdatos: async () => {
+			try {
+				// fetching data from the backend
+				const resp = await fetch(process.env.BACKEND_URL + "/api/private", 
+					{headers: {Authorization: "Bearer " + localStorage.getItem("token")},},);
+				const data = await resp.json();
+				setStore({ user: data });
+			} catch (error) {
+				console.log("Error loading message from backend", error);
+			  }
+		},
+
+		logout1: () => {
+			localStorage.clear()
+			setStore({user: null, auth: false})
+		}
 	  },
 	};
   };

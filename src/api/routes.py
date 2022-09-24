@@ -46,14 +46,21 @@ def login():
 
     user = User.query.filter_by(email=data['email'], password=data['password']).first()
     if not user:
-        return jsonify({"message": "incorrect email or password"}), 400
+        return jsonify({"message": "incorrect email or password", "logeado": False}), 400
     access_token = create_access_token(identity=user.id)
 
-    return jsonify({"token": access_token, "user":user.serialize()}), 200
+    return jsonify({"token": access_token, "user":user.serialize(), "logeado": True}), 200
 
  
 @api.route('user/<int:id>', methods=['GET'])
 @jwt_required()
 def get_user(id):
     user = User.query.get(id)
+    return jsonify(user.serialize())
+
+@api.route('/private', methods=['GET'])
+@jwt_required()
+def private():
+    user_id = get_jwt_identity()
+    user = User.query.get(user_id)
     return jsonify(user.serialize())

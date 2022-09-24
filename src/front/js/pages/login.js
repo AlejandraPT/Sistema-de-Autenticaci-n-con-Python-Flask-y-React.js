@@ -16,7 +16,7 @@ export const Login = () => {
     const result = await actions.login(email, password);
     console.log(result);
     if (result) {
-      navigate("/validacion ");
+      navigate("/private ");
     } else {
       setError("Email o contraseña incorrectos");
     }
